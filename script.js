@@ -1,5 +1,4 @@
-const url =
-  "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Seattle";
+const url = "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Seattle";
 const options = {
   method: "GET",
   headers: {
@@ -12,16 +11,16 @@ async function getWeather() {
   const response = await fetch(url, options);
   const weather = await response.json();
   console.log(weather);
-  cloud_pct.innerhtml = response.cloud_pct;
-  temp.innerhtml = response.temp;
-  feels_like.innerhtml = response.feels_like;
-  humidity.innerhtml = response.humidity;
-  min_temp.innerhtml = response.min_temp;
-  max_temp.innerhtml = response.max_temp;
-  wind_speed.innerhtml = response.wind_speed;
-  wind_degrees.innerhtml = response.wind_degrees;
-  sunrise.innerhtml = response.sunrise;
-  sunset.innerhtml = response.sunset;
+  document.getElementById('cloud_pct').innerHTML = weather.cloud_pct;
+  document.getElementById('temp').innerHTML = weather.temp;
+  document.getElementById('feels_like').innerHTML = weather.feels_like;
+  document.getElementById('humidity').innerHTML = weather.humidity;
+  document.getElementById('min_temp').innerHTML = weather.min_temp;
+  document.getElementById('max_temp').innerHTML = weather.max_temp;
+  document.getElementById('wind_speed').innerHTML = weather.wind_speed;
+  document.getElementById('wind_degrees').innerHTML = weather.wind_degrees;
+  document.getElementById('sunrise').innerHTML = weather.sunrise;
+  document.getElementById('sunset').innerHTML = weather.sunset;
 }
 
 getWeather();
