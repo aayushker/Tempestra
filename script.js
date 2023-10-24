@@ -1,4 +1,3 @@
-const url = "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Seattle";
 const options = {
   method: "GET",
   headers: {
@@ -7,7 +6,10 @@ const options = {
   },
 };
 
-async function getWeather() {
+async function getWeather(city){
+  const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`;
+  const cityName = document.getElementById('cityName');
+  cityName.innerHTML = city;
   const response = await fetch(url, options);
   const weather = await response.json();
   console.log(weather);
@@ -23,4 +25,12 @@ async function getWeather() {
   document.getElementById('sunset').innerHTML = weather.sunset;
 }
 
-getWeather();
+const submitButton = document.querySelector('.btn');
+const cityInput = document.querySelector('.form-control');
+
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  getWeather(cityInput.value);
+})
+
+getWeather('Delhi');
