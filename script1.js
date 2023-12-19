@@ -1,5 +1,3 @@
-require('dotenv').config()
-console.log(process.env)
 const options = {
   method: "GET",
   headers: {
@@ -9,22 +7,25 @@ const options = {
 };
 
 async function getWeather(city){
-  const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`;
-  const cityName = document.getElementById('cityName');
-  cityName.innerHTML = city;
-  const response = await fetch(url, options);
-  const weather = await response.json();
-  console.log(weather);
-  document.getElementById('cloud_pct').innerHTML = weather.cloud_pct;
-  document.getElementById('temp').innerHTML = weather.temp;
-  document.getElementById('feels_like').innerHTML = weather.feels_like;
-  document.getElementById('humidity').innerHTML = weather.humidity;
-  document.getElementById('min_temp').innerHTML = weather.min_temp;
-  document.getElementById('max_temp').innerHTML = weather.max_temp;
-  document.getElementById('wind_speed').innerHTML = weather.wind_speed;
-  document.getElementById('wind_degrees').innerHTML = weather.wind_degrees;
-  document.getElementById('sunrise').innerHTML = weather.sunrise;
-  document.getElementById('sunset').innerHTML = weather.sunset;
+  try {
+    const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`;
+    const cityName = document.getElementById('cityName');
+    cityName.innerHTML = city;
+    const response = await fetch(url, options);
+    const weather = await response.json();
+    document.getElementById('cloud_pct').innerHTML = weather.cloud_pct;
+    document.getElementById('temp').innerHTML = weather.temp;
+    document.getElementById('feels_like').innerHTML = weather.feels_like;
+    document.getElementById('humidity').innerHTML = weather.humidity;
+    document.getElementById('min_temp').innerHTML = weather.min_temp;
+    document.getElementById('max_temp').innerHTML = weather.max_temp;
+    document.getElementById('wind_speed').innerHTML = weather.wind_speed;
+    document.getElementById('wind_degrees').innerHTML = weather.wind_degrees;
+    document.getElementById('sunrise').innerHTML = weather.sunrise;
+    document.getElementById('sunset').innerHTML = weather.sunset;
+  } catch (error) {
+    console.error('Failed to fetch weather data:', error);
+  }
 }
 
 const submitButton = document.querySelector('.btn');
